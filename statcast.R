@@ -19,5 +19,3 @@ while(this_day <= last_reg) {
 }
 
 statcast_df <- do.call(rbind, all_scrape)
-
-
