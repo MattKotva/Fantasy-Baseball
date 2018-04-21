@@ -39,7 +39,7 @@ kipnis <- kipnis %>%
 kip_hard <- kipnis %>%
   filter(hard_hit == T) %>%
   group_by(game_year) %>%
-  summarise(hard_avg = sum(as.numeric(babip_value)))
+  summarise(hard_avg = 100 * (sum(as.numeric(babip_value))/ n()))
 
 ggplot(kip_hard, aes(x = game_year, y = hard_avg)) +
   geom_bar(stat = "identity") +
