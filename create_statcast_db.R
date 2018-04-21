@@ -1,5 +1,6 @@
 # statcast.R downloads and saves all statcast data from the last 8 years and saves it
 # to sqlite db
+# This takes a while
 
 library(baseballr)
 library(RSQLite)
@@ -33,7 +34,9 @@ apply(scrape_days, 1, function(x) {
   }
   
   statcast_df <- do.call(rbind, all_scrape)
+  statcast_df$game_date <- as.character(statcast_df$game_date)
   dbWriteTable(conn = con, "statcast", statcast_df, append = T)
   
 })
 
+dbDisconnect(con)
